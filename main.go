@@ -42,6 +42,7 @@ func main() {
 		filterFlag      = flag.String("f", "", "filter containers")
 		activeOnlyFlag  = flag.Bool("a", false, "show active containers only")
 		sortFieldFlag   = flag.String("s", "", "select container sort field")
+		columnsFlag   = flag.String("c", "status,name,ports,cpu,mem,net,io,uptime", "select columns to display")
 		reverseSortFlag = flag.Bool("r", false, "reverse container sort order")
 		invertFlag      = flag.Bool("i", false, "invert default colors")
 		connectorFlag   = flag.String("connector", "docker", "container connector to use")
@@ -80,6 +81,7 @@ func main() {
 		validSort(*sortFieldFlag)
 		config.Update("sortField", *sortFieldFlag)
 	}
+	config.Update("columms", *columnsFlag)
 
 	if *reverseSortFlag {
 		config.Toggle("sortReversed")
